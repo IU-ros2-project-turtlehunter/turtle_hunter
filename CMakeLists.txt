@@ -16,9 +16,11 @@ set(DEPENDENCIES
 
 #adding executables
 add_executable(game_processing_node src/game_processing_node.cpp)
+add_executable(hunter_node src/hunter_node.cpp)
 
 # targeting dependencies
 ament_target_dependencies(game_processing_node ${DEPENDENCIES})
+ament_target_dependencies(hunter_node ${DEPENDENCIES})
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -31,5 +33,10 @@ if(BUILD_TESTING)
   set(ament_cmake_cpplint_FOUND TRUE)
   ament_lint_auto_find_test_dependencies()
 endif()
+
+install(TARGETS
+        game_processing_node
+        hunter_node
+        DESTINATION lib/${PROJECT_NAME})
 
 ament_package()
