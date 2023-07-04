@@ -7,12 +7,15 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-find_package(turtlesim)
-find_package(rclcpp)
+find_package(turtlesim REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(geometry_msgs REQUIRED)
 
 set(DEPENDENCIES
         rclcpp
-        turtlesim)
+        turtlesim
+        geometry_msgs
+        )
 
 #adding executables
 add_executable(game_processing_node src/game_processing_node.cpp)
