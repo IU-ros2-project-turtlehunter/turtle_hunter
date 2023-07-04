@@ -9,7 +9,7 @@
 #include "turtlesim/srv/kill.hpp"
 
 #define INITIAL_TURTLES 4  // can't be less than 2 please...
-#define COLLISION_BOUNDARY 0.2
+#define COLLISION_BOUNDARY 0.4
 
 using namespace std::chrono;
 
@@ -53,15 +53,15 @@ private:
      * This function calls for /spawn service of the turtlesim, for spawning a turtle in a random spot on the map
      * @param turtle_num - the number of victim to be spawned
      */
-    void spawn_new_victim(int turtle_num) {  // tested, sometimes produces too big coords...
+    void spawn_new_victim(int turtle_num) {
         auto call = std::make_shared<spawn_srv::Request>();
         call->name = "turtle" + std::to_string(turtle_num);
 
         /*
         * generating random coordinates
         */
-        call->x = 0.5 + rand() % 11;
-        call->y = 0.5 + rand() % 11;
+        call->x = 1.1 + rand() % 10;
+        call->y = 1.1 + rand() % 10;
         call->theta = 1 + rand() % 3;
 
         while (!spawner->wait_for_service(1s)) {
@@ -84,7 +84,7 @@ private:
     /**
      * Calls for /kill service of the turtlesim, killing a selected turtle
      */
-    void kill_turtle(int turtle_num) {  // untested yet, and segfault somewhere
+    void kill_turtle(int turtle_num) {
         auto call = std::make_shared<kill_srv::Request>();
         call->name = "turtle" + std::to_string(turtle_num);
 
