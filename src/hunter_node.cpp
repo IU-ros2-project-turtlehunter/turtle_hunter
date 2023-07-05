@@ -56,10 +56,10 @@ private:
         double vict_x = turtles_positions[next_target - 1].x;
         double vict_y = turtles_positions[next_target - 1].y;
 
-        twist_msg.linear.x = 2 * dist;
+        twist_msg.linear.x = dist * 2;
         double desired_theta = atan2((vict_y - hunt_y), (vict_x - hunt_x));
 
-        twist_msg.angular.z = (desired_theta - hunter_theta) * 6;
+        twist_msg.angular.z = (desired_theta - hunter_theta) * 10;
 
         this->movement_publisher->publish(twist_msg);
 
